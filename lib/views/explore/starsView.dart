@@ -23,9 +23,15 @@ class StarsView extends StatelessWidget {
           Container(
             width: Get.width,
             height: Get.height,
+<<<<<<< HEAD
             child: FutureBuilder<List<StarData>>(
               future: API.getAllStars(),
               builder: (BuildContext context, AsyncSnapshot<List<StarData>> snapshot) {
+=======
+            child: FutureBuilder<List<PlanetData>>(
+              future: API.getAllStars(),
+              builder: (BuildContext context, AsyncSnapshot<List<PlanetData>> snapshot) {
+>>>>>>> parent of 9c9f4cd... Bottom Navigation Bar
                 switch (snapshot.connectionState) {
                   case ConnectionState.done:
                     if (snapshot.data.isNull) {
@@ -50,7 +56,11 @@ class StarsView extends StatelessWidget {
                           }
                           return GestureDetector(
                             onTap: () =>
+<<<<<<< HEAD
                                 Get.to(SolarSystemView(star: snapshot.data[index].name)),
+=======
+                                Get.to(SolarSystemView(star: snapshot.data[index].star)),
+>>>>>>> parent of 9c9f4cd... Bottom Navigation Bar
                             child: Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Container(
@@ -62,7 +72,11 @@ class StarsView extends StatelessWidget {
                                       const BorderRadius.all(const Radius.circular(16.0)),
                                 ),
                                 child: Center(
+<<<<<<< HEAD
                                   child: Text(snapshot.data[index].name),
+=======
+                                  child: Text(snapshot.data[index].star),
+>>>>>>> parent of 9c9f4cd... Bottom Navigation Bar
                                 ),
                               ),
                             ),
