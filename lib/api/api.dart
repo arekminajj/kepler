@@ -1,7 +1,6 @@
 import 'package:http/http.dart' as http;
 import 'package:json_async/json_async.dart';
 import 'package:kepler/models/planetData.dart';
-import 'package:kepler/models/starData.dart';
 
 class API {
   static const String url =
@@ -54,13 +53,12 @@ class API {
     return planets;
   }
 
-  static Future<List<StarData>> getAllStars() async {
-    const String url =
-        API.url + "table=exoplanets&columns=pl_hostname,st_teff&format=json";
+  static Future<List<PlanetData>> getAllStars() async {
+    const String url = API.url + "table=exoplanets&columns=pl_hostname&format=json";
     final http.Response response = await http.get(url);
     print("HTTP GET - " + url);
     final List data = await jsonDecodeAsync(response.body);
-    final List<StarData> stars = data.map((star) => StarData.fromMap(star)).toList();
+    final List<PlanetData> stars = data.map((star) => PlanetData.fromMap(star)).toList();
     return stars;
   }
 
