@@ -6,7 +6,6 @@ import 'package:get/route_manager.dart';
 import 'package:kepler/api/api.dart';
 import 'package:kepler/controllers/starsController.dart';
 import 'package:kepler/models/planetData.dart';
-import 'package:kepler/models/starData.dart';
 import 'package:kepler/views/explore/solarSystemView.dart';
 import 'package:kepler/widgets/forms/searchBar.dart';
 import 'package:kepler/widgets/header/header.dart';
@@ -23,9 +22,9 @@ class StarsView extends StatelessWidget {
           Container(
             width: Get.width,
             height: Get.height,
-            child: FutureBuilder<List<StarData>>(
+            child: FutureBuilder<List<PlanetData>>(
               future: API.getAllStars(),
-              builder: (BuildContext context, AsyncSnapshot<List<StarData>> snapshot) {
+              builder: (BuildContext context, AsyncSnapshot<List<PlanetData>> snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.done:
                     if (snapshot.data.isNull) {
@@ -50,7 +49,7 @@ class StarsView extends StatelessWidget {
                           }
                           return GestureDetector(
                             onTap: () =>
-                                Get.to(SolarSystemView(star: snapshot.data[index].name)),
+                                Get.to(SolarSystemView(star: snapshot.data[index].star)),
                             child: Padding(
                               padding: const EdgeInsets.all(20.0),
                               child: Container(
@@ -62,7 +61,7 @@ class StarsView extends StatelessWidget {
                                       const BorderRadius.all(const Radius.circular(16.0)),
                                 ),
                                 child: Center(
-                                  child: Text(snapshot.data[index].name),
+                                  child: Text(snapshot.data[index].star),
                                 ),
                               ),
                             ),
